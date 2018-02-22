@@ -1,0 +1,71 @@
+﻿@model IEnumerable<hackingion.Models.FileModel>
+@{
+    ViewData["Title"] = "Добавление файлов";
+}
+<meta charset="utf-8" />
+<head>
+    <style>
+        div.gallery {
+            margin: 5px;
+            border-left: 2px solid #9400D3;
+            border-top: 2px solid #4B0082;
+            border-right: 2px solid #0000FF;
+            border-bottom: 2px solid #00FF00;
+            border-radius: 7px;
+        }
+
+            div.gallery:hover {
+                border: 2px solid #777;
+            }
+
+            div.gallery img {
+                width: 100%;
+                height: auto;
+            }
+
+        div.desc {
+            padding: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h3></h3>
+    <form asp-action="_File" asp-controller="Home" method="post" enctype="multipart/form-data">
+        <p>
+            <label>Имя файла</label>
+            <input name="Name" class="form-control" />
+        </p>
+        <p>
+            <label>Описание файла</label>
+            <input name="Description" class="form-control" />
+        </p>
+        <p>
+            <label>Путь к файлу</label>
+            <input name="File" type="file" class="form-control" />
+        </p>
+        <p>
+            <input type="submit" value="Добавить" />
+        </p>
+    </form>
+    <div align="center">
+        <h3>Список файлов</h3>
+        @foreach (var f in Model)
+        {
+            <div class="gallery" style='width:40%; height:50%;'>
+                <h4>@f.Name</h4>
+                @if (f.File != null)
+                {
+                    <a class="gallery" href="data:image/jpeg;base64,@(Convert.ToBase64String(f.File))" data-lightbox="gallery" data-title="Description">@f.Description<img style='width:450px; height:450px; ' src="data:image/jpeg;base64,@(Convert.ToBase64String(f.File))" /></a>
+                }
+                <form asp-action="Delete" asp-controller="Home" method="post">
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-default" value="Удалить" />
+                    </div>
+                </form>
+
+            </div>
+        }
+    </div>
+
+</body>

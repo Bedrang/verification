@@ -1,0 +1,153 @@
+﻿@model hackingion.Models.Cats
+<!--IEnumerable<hackingion.Models.FileModel>-->
+@{
+    ViewData["Title"] = "Последние питомцы";
+}
+<style>
+    #justify {
+        text-align: justify;
+    }
+</style>
+
+<meta charset="utf-8" />
+<head>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+
+
+
+    <h3>Добавление новости</h3>
+    <form asp-action="Cats" asp-controller="Home" method="post" enctype="multipart/form-data" asp-anti-forgery="true">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <!--<div class="validation" asp-validation-summary="ModelOnly"></div>
+        <p>
+            <label>Имя питомца</label>
+            <input name="Name" type="text"  class="form-control" />
+
+        </p>
+
+        <p>
+            <label>Описание питомца</label><br />
+            <textarea name="Description" cols="120" rows="8" ></textarea>
+            <!--<input name="Description" type="text" class="form-control" />
+        </p>
+        <p>
+            <label>Фотография питомца</label>
+            <input name="File" type="file" class="form-control" />
+        </p>
+        <p>
+            <label>Порода</label>
+            <input name="Breed" type="url" class="form-control" />
+        </p>
+        <p>
+            <label>Дата рождения</label>
+            <input name="Age" type="date" class="form-control" />
+        </p>
+        <p>
+            <label>Пол</label>
+            <input name="Gender" type="radio" value="Male" class="form-control" />Мужской
+            <input name="Gender" type="radio" value="Female" class="form-control" />Женский
+            <input name="Gender" type="text" class="form-control" />Другой
+        </p>
+        <p>
+            <label>Цвет питомца</label>
+            <input name="Color" type="text" class="form-control" />
+        </p>
+        <p>
+            <label>Номер телефона владельца</label>
+            <input name="Telephone" type="tel" class="form-control" />
+        </p>
+        <p>
+            <label>Email владельца</label>
+            <input name="Email" type="email" class="form-control" />
+        </p>-->
+        <div class="form-group">
+            <label asp-for="Name" class="control-label">Имя питомца</label><br />
+            <input type="text" asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="control-label">Описание питомца</label><br />
+            <input type="text" asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" />
+        </div>
+       <!-- <div class="form-group">
+            <label asp-for="File" class="control-label">Фотография питомца</label><br />
+            <input type="file" asp-for="File" class="form-control" />
+            <span asp-validation-for="File" />
+        </div>-->
+        <div class="form-group">
+            <label asp-for="Breed" class="control-label">Порода</label><br />
+            <input type="url" asp-for="Breed" class="form-control" />
+            <span asp-validation-for="Breed" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Age" class="control-label">Дата рождения</label><br />
+            <input type="date" asp-for="Age" class="form-control" />
+            <span asp-validation-for="Age" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Gender" class="control-label">Пол</label><br />
+            <input asp-for="Gender" type="radio" value="Male" class="form-control" />Мужской
+            <input asp-for="Gender" type="radio" value="Female" class="form-control" />Женский
+            <input asp-for="Gender" type="text" class="form-control" />Другой
+            <span asp-validation-for="Gender" />
+            <div class="form-group">
+                <label asp-for="Color" class="control-label">Цвет питомца</label><br />
+                <input type="text" asp-for="Color" class="form-control" />
+                <span asp-validation-for="Color" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Telephone" class="control-label">Номер телефона владельца</label><br />
+                <input type="tel" asp-for="Telephone" class="form-control" />
+                <span asp-validation-for="Telephone" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">Email владельца</label><br />
+                <input type="email" asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" />
+            </div>
+        </div>
+        <p>
+            <input type="submit" value="Добавить" />
+            <
+        </p>
+
+    </form>
+    <!--
+        <div align="center">
+            <h3>Список питомцев</h3>
+            foreach (var f in Model)
+            {
+
+                <div class="gallery" style='width:70%; height:80%;'>
+                    <h1>f.Name</h1>
+                    if (f.File != null)
+                    {
+                        <a class="gallery" href="data:image/jpeg;base64,(Convert.ToBase64String(f.File))" data-lightbox="gallery"  ><img style='width:700px; height:700px;' src="data:image/jpeg;base64,(Convert.ToBase64String(f.File))" /></a>
+                    }
+                    <div id="justify">
+                       <strong> Описание питомца:</strong> f.Description<br />
+                        <strong> Порода:</strong> f.Breed<br />
+                        <strong> Дата рождения:</strong>  f.Age<br />
+                        <strong> Пол:</strong> f.Gender<br />
+                        <strong> Цвет:</strong> f.Color<br />
+                        <strong> Телефон владельца:</strong> f.Telephone<br />
+                        <strong> E-mail владельца:</strong> f.Email<br />
+    </div>
+
+                    <form asp-action="Delete" asp-controller="Home" asp-route-id="f.Id" method="post">
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-default" value="Удалить" padding-bottom="20px" />
+                        </div>
+                    </form>
+
+
+
+                </div>
+            }
+        </div>-->
+
+</body>

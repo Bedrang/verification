@@ -1,0 +1,82 @@
+﻿@model Register
+@{
+}
+<meta charset="utf-8">
+
+<h2>Регистрация</h2>
+<head>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+</head>
+
+<form asp-action="Register" asp-controller="Account" asp-anti-forgery="true">
+    <div  asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="UserName" class="control-label">Имя пользователя</label><br />
+            <input type="text" asp-for="UserName" class="form-control"/>
+            <span asp-validation-for="UserName" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Password" class="control-label">Пароль</label><br />
+            <input type="text" asp-for="Password" class="form-control"/>
+            <span asp-validation-for="Password" />
+        </div>
+        <div class="form-group">
+            <label asp-for="ConfirmPassword" class="control-label">Подтвердите пароль</label><br />
+            <input type="text" asp-for="ConfirmPassword" class="form-control"/>
+            <span asp-validation-for="ConfirmPassword" />
+        </div>
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Имя питомца</label><br />
+        <input type="text" asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label">Описание питомца</label><br />
+        <textarea asp-for="Description" cols="120" rows="8"></textarea>
+        <!--<input type="text" asp-for="Description" class="form-control" />  -->
+        <span asp-validation-for="Description" />
+    </div>
+    <!--<div class="form-group">
+        <label asp-for="File" class="control-label">Фотография питомца</label><br />
+        <input type="file" asp-for="File" class="form-control" />
+        <span asp-validation-for="File" />
+    </div>-->
+    <div class="form-group">
+        <label asp-for="Breed" class="control-label">Порода</label><br />
+        <input type="url" asp-for="Breed" class="form-control" />
+        <span asp-validation-for="Breed" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Age" class="control-label">Дата рождения</label><br />
+        <input type="text" asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Gender" class="control-label">Пол</label><br />
+        <input asp-for="Gender" type="radio" value="Male" class="form-control" />Мужской
+        <input asp-for="Gender" type="radio" value="Female" class="form-control" />Женский
+        <input asp-for="Gender" type="text" class="form-control" />Другой
+        <span asp-validation-for="Gender" />
+    </div>
+        <div class="form-group">
+            <label asp-for="Color" class="control-label">Цвет питомца</label><br />
+            <input type="text" asp-for="Color" class="form-control" />
+            <span asp-validation-for="Color" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Telephone" class="control-label">Номер телефона владельца</label><br />
+            <input type="text" asp-for="Telephone" class="form-control" />
+            <span asp-validation-for="Telephone" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Email" class="control-label">Email владельца</label><br />
+            <input type="email" asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" />
+        </div>
+        <div class="form-group">
+            <br />
+            <input type="submit" value="Регистрация" class="btn btn-default" />
+
+        </div>
+</form>
